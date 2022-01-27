@@ -5,78 +5,139 @@ namespace BethanyPieShopHRM
 {
     class Program
     {
-        static void Main (string[] args)
+        static void Main(string[] args)
         {
-            string firstName = "Bethany";
-            string lastName = "Smith";
-            string fullName = firstName +" "+ lastName; //concatenated or
-            string fullName2 = string.Concat(firstName, lastName); // concatenated too
+            /* uderstanding methods  -- general
+            *  <acess modifier>  <return type> Method_Name (Parameters)
+            *  {
+            *    method statements
+            *  }
+            */
+            //int montlyWage = 1000;
+            //int months = 12;
 
-            //method to formt string
-            string employeeName = "Bethany";
-            int age = 34;
-            
-            string greetingText1 = "Hello" + employeeName +", you are" + age +"Years";
-            string greetingText2 = string.Format("Hello {0}, you are {1} years", employeeName, age); //more legible
-            string greetingText3 = $"Hello {employeeName}, you are {age} years"; //Better
+            //int yearlyWage = CalculateYearlyWage(montlyWage, months);
 
-            //lower case  -- to use uppercase or another, just change the member type (after .)
-            string empId = firstName.ToLower() + " " + lastName.Trim().ToLower();
-            // .Trim() add a space before and after the string
+            //Console.WriteLine($"Yearly wage(from main): {yearlyWage}");
 
-            int length = empId.Length;
+            //UsingValueParameters();
+            //UsingRefParameters();
+            //UsingOutParameters();
+            UsingParams();
 
-            if (fullName.Contains("beth") || fullName.Contains("Beth"))
+            Console.ReadLine(); 
+        }
+
+        public static int CalculateYearlyWage(int montlyWage, int numberOfMonthsWorked)
+        {
+            //Console.WriteLine($"Yearly wage: {montlyWage * numberOfMonthsWorked}");
+            if (numberOfMonthsWorked == 12) //let's add a bonus month
+                return montlyWage * (numberOfMonthsWorked + 1);
+
+            return montlyWage * numberOfMonthsWorked;
+        }
+
+        public static void UsingValueParameters()
+        {
+            int montlyWage1 = 1000;
+            int montlyWage2 = 2000;
+            int months1 = 12;
+            int months2 = 8;
+            int bonus = 300;
+
+            int yearlyWageForEmployee1 = CalculateYearlyWage(montlyWage1, months1, bonus);
+            Console.WriteLine($"Yearly wage for employee 1 (Bethany):{yearlyWageForEmployee1}\n");
+
+
+            int yearlyWageForEmployee2 = CalculateYearlyWage(montlyWage2, months2, bonus);
+            Console.WriteLine($"Yearly wage for employee 2 (Jonh):{yearlyWageForEmployee2}");
+
+        }
+
+        public static int CalculateYearlyWage(int montlyWage, int numberOfMonthsWorked, int bonus)
+        {
+            if (montlyWage < 2000)
+                bonus *= 2;
+
+            Console.WriteLine($"The early wage is: {montlyWage * numberOfMonthsWorked + bonus}");
+            Console.WriteLine($"The employee got a bonus of {bonus}");
+            return montlyWage * numberOfMonthsWorked + bonus;
+        }
+    
+        public static void UsingRefParameters()
+        {
+            int montlyWage1 = 1000;
+            int montlyWage2 = 2000;
+            int months1 = 12;
+            int months2 = 8;
+            int bonus = 300;
+
+            int yearlyWageForEmployee1ByRef = CalculateYearlyWageByRef (montlyWage1, months1, ref bonus);
+            Console.WriteLine($"Yearly wage for employee 1 (Bethany):{yearlyWageForEmployee1ByRef}\n");
+
+
+            int yearlyWageForEmployee2ByRef = CalculateYearlyWageByRef(montlyWage2, months2, ref bonus);
+            Console.WriteLine($"Yearly wage for employee 2 (Jonh):{yearlyWageForEmployee2ByRef}");
+
+        }
+
+        public static int CalculateYearlyWageByRef(int montlyWage, int numberOfMonthsWorked, ref int bonus)
+        {
+            if (montlyWage < 2000)
             {
-                Console.WriteLine("It's Bethanny");
+                bonus *= 2;
+                Console.WriteLine("Bonus doubled!! Yay!");
             }
 
-            string substring = fullName.Substring(1, 3);
-            Console.WriteLine("Caracters 2 or 4 of fullname are " + substring);
-
-            string nameUsingInterpolation = $"{firstName}-{lastName}";
-
-            string greeting = $"Hello, {firstName.ToLower()}";
-            Console.WriteLine(greeting);
-
-
-            //--------------------------------------
-            string name1 = "Bethany";
-            string name2 = "BETHANY";
-
-            Console.WriteLine("Are both names equal?" + (name1 == name2) ); //uper case and lower case make the string differents
-            Console.WriteLine("Is name equal to Nethany?" + (name1 =="Bethany") );
-
-            //------------------------------------
-            string lastname = " Smith";
-
-
-            StringBuilder builder = new StringBuilder();
-
-            builder.Append("Last name: ");
-            builder.AppendLine(lastname);
-            builder.Append("First name: ");
-            builder.Append(firstName);
-            
-            string result = builder.ToString();
-            Console.WriteLine(result);
-
-            // --------------------- parse Converting
-
-            Console.WriteLine("Enter the wage: ");
-            string wage = Console.ReadLine();
-
-            int wageValue;
-            if (int.TryParse(wage, out wageValue))
-                Console.WriteLine("Parsing success: " + wageValue);
-            else
-                Console.WriteLine("Parsing failed");
-
-            string hireDateString = "12/12/2020";
-            DateTime hireDate = DateTime.Parse(hireDateString);
-            Console.WriteLine("Parsed date: " + hireDate);
-
-            Console.ReadLine();
+            Console.WriteLine($"The early wage is: {montlyWage * numberOfMonthsWorked + bonus}");
+            return montlyWage * numberOfMonthsWorked + bonus;
         }
+
+        public static void UsingOutParameters()
+        {
+            int montlyWage1 = 1234;
+            int months1 = 12;
+            int bonus; //no initial value has been set
+
+            int yearlyWageForEmployee1 = CalculateYearlyWageWithOut(montlyWage1, months1, out bonus);
+            Console.WriteLine($"Yearly wage for employee 1 (Bethany):{yearlyWageForEmployee1}\n");
+            Console.WriteLine($"Bethany received a  bonus of {bonus}");
+
+        }
+
+        public static int CalculateYearlyWageWithOut(int montlyWage, int numberOfMonthsWorked, out int bonus)
+        {
+            bonus = new Random().Next(1000); //generate a random value smaller than 1000
+  
+            if (bonus < 500)
+            {
+                bonus *= 2;
+                Console.WriteLine("Bonus doubled!! Yay!");
+            }
+
+            Console.WriteLine($"The early wage is: {montlyWage * numberOfMonthsWorked + bonus}");
+            return montlyWage * numberOfMonthsWorked + bonus;
+        }
+
+        private static void UsingParams()
+        {
+            int monthlyWage1 = 1000, monthlyWage2 = 2500, monthlyWage3 = 1357, monthlyWage4 = 2468;
+
+            int average = CalculateAverageMarge(monthlyWage1, monthlyWage2, monthlyWage3, monthlyWage4);
+            Console.WriteLine($"The average wage is {average}");
+        }
+        //private static int CalculateAverageMarge(int wage1, params int[] wages) // if we pass the variable before the parameter, it will be ignored {**wages1} 
+        private static int CalculateAverageMarge( params int[] wages) // all parameters will be counted as passed in the function above
+        {
+            int total = 0;
+            int numberOfWages = wages.Length;
+
+            for(int i = 0; i < numberOfWages; i++)
+            {
+                total += wages[i];
+            }
+            return total / numberOfWages;
+        }
+
     }
 }
