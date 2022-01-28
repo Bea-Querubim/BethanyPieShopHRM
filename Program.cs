@@ -20,11 +20,11 @@ namespace BethanyPieShopHRM
 
             //Console.WriteLine($"Yearly wage(from main): {yearlyWage}");
 
-            //UsingValueParameters();
-            //UsingRefParameters();
-            //UsingOutParameters();
-            //UsingParams();
-            //CalculateAverageWage();
+            UsingValueParameters();
+            UsingRefParameters();
+            UsingOutParameters();
+            UsingParams();
+            CalculateAverageWage();
             UsingExpressionBodiedSintax();
 
             Console.ReadLine(); 
@@ -170,7 +170,6 @@ namespace BethanyPieShopHRM
 
         //simple way to consume a function in a single line  ( using a => )
         private static int CalculateEarlyWageExpressionBodied(int monthlyWage, int numberOfMonthsWorked, int bonus) => monthlyWage * numberOfMonthsWorked + bonus;
-
 
     }
 }
