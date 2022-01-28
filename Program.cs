@@ -23,7 +23,9 @@ namespace BethanyPieShopHRM
             //UsingValueParameters();
             //UsingRefParameters();
             //UsingOutParameters();
-            UsingParams();
+            //UsingParams();
+            //CalculateAverageWage();
+            UsingExpressionBodiedSintax();
 
             Console.ReadLine(); 
         }
@@ -123,11 +125,12 @@ namespace BethanyPieShopHRM
         {
             int monthlyWage1 = 1000, monthlyWage2 = 2500, monthlyWage3 = 1357, monthlyWage4 = 2468;
 
-            int average = CalculateAverageMarge(monthlyWage1, monthlyWage2, monthlyWage3, monthlyWage4);
+            int average = CalculateAverageWage(monthlyWage1, monthlyWage2, monthlyWage3, monthlyWage4);
             Console.WriteLine($"The average wage is {average}");
         }
         //private static int CalculateAverageMarge(int wage1, params int[] wages) // if we pass the variable before the parameter, it will be ignored {**wages1} 
-        private static int CalculateAverageMarge( params int[] wages) // all parameters will be counted as passed in the function above
+        
+        private static int CalculateAverageWage( params int[] wages) // all parameters will be counted as passed in the function above
         {
             int total = 0;
             int numberOfWages = wages.Length;
@@ -138,6 +141,36 @@ namespace BethanyPieShopHRM
             }
             return total / numberOfWages;
         }
+
+        private static void UsingNamedArguments()
+        {
+            int montlyWageArgs = 1357;
+            int monthArgs = 12;
+            int bonusArgs = 500;
+
+            int yearlyWageForEmployee1 = CalculateAverageWageWithNamed(bonus: bonusArgs, numberOfMonthWorked: monthArgs, monthlyWage: montlyWageArgs);
+            Console.WriteLine($"Yearly wage for employee 1 (Bethany): {yearlyWageForEmployee1}");
+        }
+
+        public static int CalculateAverageWageWithNamed(int monthlyWage, int numberOfMonthWorked, int bonus)
+        {
+            Console.WriteLine($"Yearly wage is: {monthlyWage * numberOfMonthWorked * bonus}");
+            return monthlyWage * numberOfMonthWorked * bonus;
+        }
+    
+        private static void UsingExpressionBodiedSintax()
+        {
+            int montlyWageExBodieSintax = 1357;
+            int monthExBodieSintax = 12;
+            int bonusExBodieSintax = 500;
+
+            int yearlyWageForEmployee1 = CalculateEarlyWageExpressionBodied (montlyWageExBodieSintax, monthExBodieSintax, bonusExBodieSintax);
+            Console.WriteLine($"Yearly wage for employee 1 (Bethany): {yearlyWageForEmployee1}");
+        }
+
+        //simple way to consume a function in a single line  ( using a => )
+        private static int CalculateEarlyWageExpressionBodied(int monthlyWage, int numberOfMonthsWorked, int bonus) => monthlyWage * numberOfMonthsWorked + bonus;
+
 
     }
 }
