@@ -2,11 +2,11 @@
 
     using System;
 
-    namespace BethanyPieShopHRM
+    namespace IntroductionCSharp
+{
+        class IntroductionCSharp
     {
-        class Program
-        {
-            static void Main(string[] args)
+            static void Introduction(string[] args)
             {
                 //implicity types
                 var montlyWage = 1234;

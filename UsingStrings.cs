@@ -1,11 +1,11 @@
     using System;
     using System.Text;
 
-    namespace BethanyPieShopHRM
+    namespace UsingStrings
+{
+        class UsingStrings
     {
-        class Program
-        {
-            static void Main (string[] args)
+            static void UseString (string[] args)
             {
                 string firstName = "Bethany";
                 string lastName = "Smith";

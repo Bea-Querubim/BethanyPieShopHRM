@@ -1,11 +1,11 @@
     using System;
     using System.Text;
 
-    namespace BethanyPieShopHRM
+    namespace WorkingWithMethods
+{
+        class WorkingWithMethods
     {
-        class Program
-        {
-            static void Main(string[] args)
+            static void WorkingMethods (string[] args)
             {
                 /* uderstanding methods  -- general
                 *  <acess modifier>  <return type> Method_Name (Parameters)

@@ -1,13 +1,13 @@
 using System;
 using System.Text;
 
-namespace BethanyPieShopHRM
+namespace CreatingEnumeration
 {
-    class Program
+    class CreatingEnumeration
     {
-        static void Main(string[] args)
+        static void CreateEnumeration (string[] args)
         {
-            //UsingEnumerations();
+            UsingEnumerations();
             UsingAStruct();
         }
 

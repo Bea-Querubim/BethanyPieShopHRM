@@ -8,27 +8,68 @@ namespace BethanyPieShopHRM
 {
     public class Employee
     {
-        public string firstName;
-        public string lastName;
-        public string email;
+        private string firstName;
+        private string lastName;
+        private string email;
 
-        public int numberOfHoursWorked;
-        public double wage;
-        public double hourlyRate;
+        private int numberOfHoursWorked;
+        private double wage;
+        private double hourlyRate;
 
-        public DateTime birthDay;
+        private DateTime birthDay;
 
-        public EmployeeType employeeType;
+        private EmployeeType employeeType;
+
+        public string FirstName
+        {
+            get{return firstName;} set { firstName = value;}
+        }
+        public string LastName
+        {
+            get {return lastName; }  set { lastName = value;}
+        }
+        public string Email
+        {
+            get { return email; }  set { email = value; }
+        }
+        public int NumberOfHoursWorked
+        {
+            get { return numberOfHoursWorked;}  set { numberOfHoursWorked = value; }
+        }
+        public double Wage
+        { 
+            get { return wage; } 
+            set {
+                if (wage < 0)
+                    wage = 0;
+                else
+                    wage = value; 
+            }
+        }
+        public double HourlyRate
+        {
+            get { return hourlyRate; } set { hourlyRate = value; }
+        }
+        public DateTime BirthDay
+        {
+            get { return birthDay; }
+            set { birthDay = value; }
+        }
+        public EmployeeType EmployeeType
+        {
+            get { return employeeType; }
+            set { employeeType = value; }
+        }
 
         //creating constructor (Constructors are special types of methods used to create and initialize objects)
         public Employee(string first, string last, string em, DateTime bday, EmployeeType empType, double rate)
         {
-            firstName = first;
-            lastName = last;
-            email = em;
-            birthDay = bday;
-            employeeType = empType;
-            hourlyRate = rate;
+            FirstName = first;
+            LastName = last;
+            Email = em;
+            BirthDay = bday;
+            EmployeeType = empType;
+            HourlyRate = rate;
         }
 
         public Employee(string first, string last, string em, DateTime bday, EmployeeType empType) : this (first, last, em, bday, empType, 0)
@@ -42,27 +83,27 @@ namespace BethanyPieShopHRM
         public void PerfomWork()
         {
             numberOfHoursWorked++;
-            Console.WriteLine($"{firstName} {lastName} is now working!");
+            Console.WriteLine($"{FirstName} {LastName} is now working!");
         }
 
         public void StopWorking()
         {
-            Console.WriteLine($"{firstName} {lastName} has stopped working!");
+            Console.WriteLine($"{FirstName} {LastName} has stopped working!");
         }
 
         public double ReceiveWage()
         {
-            wage = numberOfHoursWorked * hourlyRate;
-            Console.WriteLine($"The wage for {numberOfHoursWorked} hours of work is {wage}");
-            numberOfHoursWorked = 0;
+            Wage = NumberOfHoursWorked * HourlyRate;
+            Console.WriteLine($"The wage for {NumberOfHoursWorked} hours of work is {Wage}");
+            NumberOfHoursWorked = 0;
             
             return wage;
         }
         public void DisplayEmployeeDetais()
         {
-           Console.WriteLine($"\nFirst Name: {firstName}\nLast Name: {lastName}" +
-               $"\nEmail: {email}\nBirthday: {birthDay.ToShortDateString()}" +
-               $"\nEmployee type: {employeeType}\n");
+           Console.WriteLine($"\nFirst Name: {FirstName}\nLast Name: {LastName}" +
+               $"\nEmail: {Email}\nBirthday: {BirthDay.ToShortDateString()}" +
+               $"\nEmployee type: {EmployeeType}\n");
         }
     }
 }
